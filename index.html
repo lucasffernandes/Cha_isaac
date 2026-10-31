@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chá de Bebê do Isaac</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--musgo:#4a6a2a;--oliva:#6b7f3a;--salvia:#a9b98a;--creme:#f1f5df;--bege:#ecd9a8;--caramelo:#b9803f;--marrom:#5b3a21;--branco:#fffdf6}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Nunito,system-ui,sans-serif;color:var(--marrom);background:radial-gradient(circle at 50% 0,#f8faea,var(--creme));min-height:100vh;overflow-x:hidden;font-size:17px;line-height:1.5}
+.script{font-family:'Kaushan Script',cursive;color:var(--musgo);font-weight:400}
+.deco{position:fixed;pointer-events:none;z-index:0}
+.b{position:absolute;border-radius:50%;box-shadow:inset -6px -8px 14px rgba(0,0,0,.08),inset 6px 6px 12px rgba(255,255,255,.5)}
+.g{background:radial-gradient(circle at 35% 30%,#8ea05a,var(--musgo))}.c{background:radial-gradient(circle at 35% 30%,#fff3cf,#e5c88a)}.w{background:radial-gradient(circle at 35% 30%,#fff,#e9e4d2)}
+.L{left:-38px;top:-30px;width:130px;height:100vh}.R{right:-38px;top:-30px;width:130px;height:100vh}
+@media(max-width:600px){.L,.R{opacity:.55;width:90px}}
+main{position:relative;z-index:1;max-width:640px;margin:0 auto;padding:28px 20px 190px}
+section{margin-bottom:34px}
+.center{text-align:center}
+.hero{padding-top:20px}
+.hero .t1{font-size:2.2rem;margin:0;line-height:1}
+.hero .t2{font-size:5.4rem;margin:-6px 0 0;line-height:1.05} 
+.bear{font-size:3.2rem;display:block;animation:sway 4s ease-in-out infinite}
+@keyframes sway{50%{transform:rotate(6deg) translateY(-4px)}}
+.heart{color:var(--marrom);display:flex;align-items:center;gap:10px;justify-content:center;margin:14px 0}
+.heart:before,.heart:after{content:"";height:1px;width:70px;background:var(--marrom);opacity:.6}
+.info{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:0;margin:18px 0}
+.info div{padding:4px 8px;border-left:1px solid var(--marrom)}.info div:first-child{border:0}
+.info svg{width:44px;height:44px;stroke:var(--musgo);fill:none;stroke-width:1.8}
+.info b{display:block;color:var(--musgo);font-size:1.15rem}
+@media(max-width:480px){.info{font-size:.88rem}.info svg{width:34px;height:34px}}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border-radius:30px;border:2px solid var(--musgo);background:var(--musgo);color:#fff;font:800 1rem Nunito;cursor:pointer;text-decoration:none;transition:transform .15s,background .2s}
+.btn:hover{background:var(--oliva)}.btn:active{transform:scale(.97)}
+.btn.alt{background:transparent;color:var(--musgo)}.btn.alt:hover{background:#e3ecc9}
+.btn[disabled]{opacity:.55;cursor:not-allowed}
+.row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+.card{background:var(--branco);border-radius:22px;box-shadow:0 6px 22px rgba(74,106,42,.13);padding:22px;margin-bottom:16px}
+h2{font-family:'Kaushan Script';color:var(--musgo);font-weight:400;font-size:2rem;margin:0 0 6px}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=text],input[type=tel],textarea,input[type=number]{width:100%;font:inherit;padding:13px 14px;border:2px solid var(--salvia);border-radius:14px;background:#fff;color:var(--marrom)}
+:focus-visible{outline:3px solid var(--caramelo);outline-offset:2px}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:10px;align-items:center;padding:14px;border:2px solid var(--salvia);border-radius:14px;cursor:pointer;margin:0;font-weight:600}
+.opt input{accent-color:var(--musgo);width:20px;height:20px}
+.opt:has(input:checked){background:#e7efd2;border-color:var(--musgo)}
+.hint{font-size:.9rem;opacity:.8}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px}
+.chips a{white-space:nowrap;padding:7px 14px;border-radius:20px;background:var(--bege);color:var(--marrom);text-decoration:none;font-weight:600;font-size:.9rem}
+h3{color:var(--musgo);margin:22px 0 10px;scroll-margin-top:12px}
+.item{display:grid;grid-template-columns:54px 1fr;gap:12px;background:var(--branco);border-radius:18px;padding:14px;margin-bottom:12px;box-shadow:0 3px 12px rgba(74,106,42,.1);border:2px solid transparent}
+.item.sel{border-color:var(--musgo)}.item.out{background:#eeeadb;opacity:.8}
+.ico{font-size:2rem;background:var(--creme);border-radius:16px;display:grid;place-items:center;height:54px}
+.item h4{margin:0}.item small{display:block;opacity:.85}
+.tag{display:inline-block;font-size:.8rem;font-weight:800;padding:2px 10px;border-radius:12px;background:#f7e5b8;color:#7a4f14;margin-top:4px}
+.tag.out{background:#ddd7c2;color:#5b3a21}
+.step{display:flex;align-items:center;gap:12px;margin-top:10px}
+.step button{width:46px;height:46px;border-radius:50%;border:2px solid var(--musgo);background:#fff;color:var(--musgo);font:800 1.4rem Nunito;cursor:pointer}
+.step button:disabled{opacity:.35}.step output{min-width:28px;text-align:center;font-weight:800;font-size:1.2rem}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:5;background:rgba(255,253,246,.95);backdrop-filter:blur(8px);box-shadow:0 -4px 18px rgba(0,0,0,.1);padding:12px 16px calc(12px + env(safe-area-inset-bottom));display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center}
+.msg{border-radius:14px;padding:12px 14px;margin:12px 0;font-weight:600}
+.err{background:#fbe6d6;color:#8a3b12}.ok{background:#e3efcf;color:var(--musgo)}
+.modal{position:fixed;inset:0;background:rgba(60,45,20,.45);z-index:10;display:grid;place-items:center;padding:20px}
+.modal .card{max-width:420px;width:100%;margin:0}
+.hidden{display:none!important}
+.hp{position:absolute;left:-9999px}
+ul.sum{padding-left:20px}
+.link{word-break:break-all;background:var(--creme);padding:10px;border-radius:10px;font-size:.85rem}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="deco L" aria-hidden="true">
+ <i class="b g" style="width:90px;height:90px;top:10px;left:10px"></i><i class="b w" style="width:80px;height:80px;top:80px;left:40px"></i><i class="b c" style="width:84px;height:84px;top:160px;left:0"></i>
+ <i class="b g" style="width:76px;height:76px;top:250px;left:30px"></i><i class="b c" style="width:70px;height:70px;top:330px;left:10px"></i><i class="b w" style="width:84px;height:84px;top:400px;left:34px"></i>
+</div>
+<div class="deco R" aria-hidden="true">
+ <i class="b c" style="width:90px;height:90px;top:0;right:10px"></i><i class="b g" style="width:80px;height:80px;top:76px;right:44px"></i><i class="b w" style="width:80px;height:80px;top:150px;right:0"></i>
+ <i class="b c" style="width:76px;height:76px;top:430px;right:30px"></i><i class="b g" style="width:84px;height:84px;top:510px;right:6px"></i>
+</div>
+
+<main>
+<section id="home" class="hero center">
+ <span class="bear" aria-hidden="true">🧸</span>
+ <p>Estamos preparando um momento muito especial e gostaríamos de compartilhar com você!</p>
+ <h1 style="margin:0"><span class="script t1" style="display:block">Chá do</span><span class="script t2" style="display:block">Isaac</span></h1>
+ <div class="heart" aria-hidden="true">♡</div>
+ <p>Será uma alegria ter você conosco para celebrar a chegada do nosso grande amor!</p>
+ <div class="info">
+  <div><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="9" width="34" height="32" rx="5"/><path d="M15 5v8M33 5v8M7 19h34"/><path d="M24 36s-7-4.5-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.500-7 9-7 9z"/></svg><br>Dia<b id="i-dia"></b><span id="i-sem"></span></div>
+  <div><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="18"/><path d="M24 12v13l8 5"/></svg><br>Horário<b id="i-hora"></b></div>
+  <div><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 43S9 29 9 19a15 15 0 0 1 30 0c0 10-15 24-15 24z"/><circle cx="24" cy="19" r="5"/></svg><br>Endereço<b id="i-end"></b></div>
+ </div>
+ <a class="btn alt" id="mapa" target="_blank" rel="noopener">📍 Como chegar (abrir no GPS)</a>
+ <div class="heart" aria-hidden="true">♡</div>
+ <div class="row">
+  <a class="btn" href="#participar">Participar do Chá de Bebê</a>
+  <a class="btn alt" href="#lista">Ver lista de presentes</a>
+ </div>
+ <p style="margin-top:22px"><b>Contamos com a sua presença!</b></p>
+</section>
+
+<div id="app">
+ <p class="center" id="loading">Carregando…</p>
+</div>
+</main>
+
+<div class="modal hidden" id="modal" role="dialog" aria-modal="true" aria-labelledby="mt"><div class="card" id="mbox"></div></div>
+
+<script>
+/* ===== CONFIGURAÇÃO (edite aqui) ===== */
+const CFG={
+ api:'https://script.google.com/macros/s/AKfycbyUBdRtlno1NNNZEC0xP24w4_eBgroj_gEuKOWT7nVxJCij2WuJ4-lAZOsqYo4bsfUF/exec',
+ dia:'12/12/26', semana:'(sábado)', hora:'19:30 H',
+ enderecoCurto:'Rua J, 270<br>Vila Esperança,<br>Contagem',
+ enderecoCompleto:'Rua J, 270, Vila Esperança, Contagem, MG'
+};
+const CATS=['Fraldas','Higiene do bebê','Roupinhas','Alimentação','Banho','Acessórios','Outros itens'];
+const ICON={'Fraldas':'👶','Higiene do bebê':'🧴','Roupinhas':'👕','Alimentação':'🍼','Banho':'🛁','Acessórios':'🧸','Outros itens':'🎁'};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+$('#i-dia').textContent=CFG.dia;$('#i-sem').textContent=CFG.semana;$('#i-hora').textContent=CFG.hora;
+$('#i-end').innerHTML=CFG.enderecoCurto;
+$('#mapa').href='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(CFG.enderecoCompleto);
+
+let items=[],sel={},presenca=null,busy=false,done=null,err='';
+const params=new URLSearchParams(location.search);
+let token=params.get('t')||localStorage.getItem('isaac_t')||'';
+const novo=!/^[0-9a-f-]{36}$/.test(token);
+if(novo)token=crypto.randomUUID();
+const livre=i=>i.necessaria-i.reservada+i.minha;
+
+async function load(){
+ try{
+  const r=await fetch(CFG.api+'?action=state&t='+token);const d=await r.json();
+  items=d.items;
+  if(!Object.keys(sel).length&&!form.touched)items.forEach(i=>{if(i.minha>0)sel[i.id]=i.minha});
+  if(d.guest&&!form.touched){form.nome=d.guest.nome;form.tel=d.guest.telefone;form.msg=d.guest.mensagem;form.pessoas=d.guest.pessoas||1;presenca=d.guest.presenca==='Sim'?'sim':'nao'}
+  items.forEach(i=>{if(sel[i.id]>livre(i))sel[i.id]=Math.max(0,livre(i))});
+  render();
+ }catch(e){$('#app').innerHTML='<div class="card center"><p>Não foi possível carregar a lista. Verifique sua conexão.</p><button class="btn" onclick="location.reload()">Tentar novamente</button></div>'}
+}
+const form={nome:'',tel:'',msg:'',pessoas:1,touched:false};
+const total=()=>Object.values(sel).reduce((a,b)=>a+b,0);
+
+function itemCard(i){
+ const l=livre(i),q=sel[i.id]||0,out=l<=0&&!q;
+ return `<article class="item ${q?'sel':''} ${out?'out':''}"><div class="ico" aria-hidden="true">${ICON[i.categoria]||'🎁'}</div><div>
+ <h4>${esc(i.nome)}</h4>${i.tamanho?`<small>${esc(i.tamanho)}</small>`:''}
+ <small>Necessário: ${i.necessaria} · Reservado: ${i.reservada-i.minha+ (q?0:i.minha)} · Disponível: ${Math.max(0,l)}</small>
+ ${out?'<span class="tag out">Item esgotado — todas as unidades já foram reservadas.</span>':l<=2?'<span class="tag">Últimas unidades</span>':''}
+ ${out?'':`<div class="step"><button type="button" data-a="dec" data-id="${i.id}" aria-label="Diminuir ${esc(i.nome)}" ${q<1?'disabled':''}>−</button><output aria-live="polite">${q}</output><button type="button" data-a="inc" data-id="${i.id}" aria-label="Aumentar ${esc(i.nome)}" ${q>=l?'disabled':''}>+</button></div>`}
+ </div></article>`;
+}
+
+function render(){
+ if(done)return renderDone();
+ const cats=CATS.filter(c=>items.some(i=>i.categoria===c)).concat([...new Set(items.map(i=>i.categoria))].filter(c=>!CATS.includes(c)));
+ const sim=presenca==='sim',verLista=presenca!=='nao';
+ const act=document.activeElement&&document.activeElement.id;
+ $('#app').innerHTML=`
+ <section id="participar" class="card">
+  <h2>Confirme sua presença</h2>
+  <label for="nome">Nome completo</label><input type="text" id="nome" autocomplete="name" value="${esc(form.nome)}">
+  <label>Você poderá comparecer?</label>
+  <div class="opts">
+   <label class="opt"><input type="radio" name="p" value="sim" ${sim?'checked':''}> Sim, estarei presente</label>
+   <label class="opt"><input type="radio" name="p" value="nao" ${presenca==='nao'?'checked':''}> Não poderei comparecer</label>
+  </div>
+  ${sim?`<label for="pessoas">Quantas pessoas irão (incluindo você)?</label><input type="number" id="pessoas" min="1" max="20" inputmode="numeric" value="${form.pessoas}">`:''}
+  <label for="tel">Telefone ou WhatsApp (opcional)</label><input type="tel" id="tel" autocomplete="tel" value="${esc(form.tel)}">
+  <label for="msg">Deixe uma mensagem carinhosa para o Isaac e seus pais (opcional)</label><textarea id="msg" rows="3" maxlength="500">${esc(form.msg)}</textarea>
+  <input class="hp" id="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+ </section>
+ ${verLista?`<section id="lista"><h2>Lista de presentes</h2><p class="hint">Escolha o que você vai levar. As quantidades são atualizadas para todos.</p>
+  <nav class="chips" aria-label="Categorias">${cats.map(c=>`<a href="#c-${encodeURIComponent(c)}">${esc(c)}</a>`).join('')}</nav>
+  ${cats.map(c=>`<h3 id="c-${encodeURIComponent(c)}">${ICON[c]||'🎁'} ${esc(c)}</h3>${items.filter(i=>i.categoria===c).map(itemCard).join('')}`).join('')}
+ </section>`:'<p class="center hint">Sem problemas! Basta enviar para nos avisar.</p>'}
+ <div class="bar">${err?`<div class="msg err" role="alert" style="flex-basis:100%;margin:0">${esc(err)}</div>`:''}<span>${verLista?`<b>${total()}</b> ${total()===1?'item':'itens'}`:''}</span><button class="btn" id="enviar" ${busy?'disabled':''}>${busy?'Enviando…':'Confirmar'}</button></div>`;
+ if(act&&$('#'+act)&&['nome','pessoas','tel','msg'].includes(act)){const e=$('#'+act);e.focus();try{e.setSelectionRange(e.value.length,e.value.length)}catch(_){}}
+}
+
+function sync(){const g=id=>$('#'+id);if(!g('nome'))return;form.nome=g('nome').value;form.tel=g('tel').value;form.msg=g('msg').value;if(g('pessoas'))form.pessoas=Math.max(1,Math.min(20,parseInt(g('pessoas').value)||1))}
+
+document.addEventListener('input',e=>{if(e.target.closest('#participar')){form.touched=true;sync()}});
+document.addEventListener('change',e=>{if(e.target.name==='p'){sync();form.touched=true;err='';presenca=e.target.value;render()}});
+document.addEventListener('click',e=>{
+ const b=e.target.closest('[data-a]');
+ if(b){const i=items.find(x=>x.id===b.dataset.id);const q=sel[i.id]||0;form.touched=true;err='';if(!presenca)presenca='sim';
+  sel[i.id]=b.dataset.a==='inc'?Math.min(livre(i),q+1):Math.max(0,q-1);if(!sel[i.id])delete sel[i.id];render();
+  const nb=document.querySelector(`[data-a="${b.dataset.a}"][data-id="${b.dataset.id}"]`);if(nb&&!nb.disabled)nb.focus();return}
+ if(e.target.id==='enviar')confirmar();
+ if(e.target.id==='cancelar')fechar();
+ if(e.target.id==='ok')enviar();
+ if(e.target.id==='alterar'){done=null;err='';render();scrollTo({top:0})}
+ if(e.target.id==='copiar'){navigator.clipboard&&navigator.clipboard.writeText(e.target.dataset.l);e.target.textContent='Link copiado!'}
+});
+function abrir(h){$('#mbox').innerHTML=h;$('#modal').classList.remove('hidden');const b=$('#mbox button');b&&b.focus()}
+function fechar(){$('#modal').classList.add('hidden')}
+
+function confirmar(){
+ sync();err='';
+ if(form.nome.trim().length<3)err='Informe seu nome completo.';
+ else if(presenca!=='nao'&&!total())err='Escolha ao menos um item para levar.';
+ if(err){render();return}
+ const lista=presenca==='sim'?'<ul class="sum">'+items.filter(i=>sel[i.id]).map(i=>`<li>${sel[i.id]} × ${esc(i.nome)}${i.tamanho?' ('+esc(i.tamanho)+')':''}</li>`).join('')+'</ul>':'';
+ abrir(`<h2 id="mt">${presenca==='sim'?'Confirmar reserva?':'Enviar resposta?'}</h2><p>${presenca==='sim'?'Você selecionou:':'Você avisará que não poderá comparecer.'}</p>${lista}<div class="row"><button class="btn alt" id="cancelar">Voltar</button><button class="btn" id="ok">Confirmar</button></div>`);
+}
+
+async function enviar(){
+ if(busy)return;busy=true;$('#ok').disabled=true;$('#ok').textContent='Enviando…';
+ try{
+  const r=await fetch(CFG.api,{method:'POST',body:JSON.stringify({token,nome:form.nome,presenca,pessoas:form.pessoas,telefone:form.tel,mensagem:form.msg,website:$('#website')?.value||'',
+   itens:presenca==='sim'?Object.entries(sel).map(([id,qtd])=>({id,qtd})):[]})});
+  const d=await r.json();busy=false;fechar();
+  if(d.ok){localStorage.setItem('isaac_t',token);done=d;items=d.items;history.replaceState(null,'','?t='+token);render();scrollTo({top:0})}
+  else{if(d.items)items=d.items;items.forEach(i=>{if(sel[i.id]>livre(i))sel[i.id]=Math.max(0,livre(i));if(!sel[i.id])delete sel[i.id]});err=d.erro||'Erro ao enviar.';render()}
+ }catch(e){busy=false;fechar();err='Conexão instável: sua resposta NÃO foi confirmada. Toque em Confirmar para tentar de novo (não haverá reserva duplicada).';render()}
+}
+
+function renderDone(){
+ const d=done,link=location.origin+location.pathname+'?t='+token;
+ $('#home').classList.add('hidden');
+ $('#app').innerHTML=`<section class="card center"><span class="bear" aria-hidden="true">🧸</span>
+ <h2>${d.presenca?'Presença confirmada!':'Obrigado por nos avisar!'}</h2>
+ <p>${d.presenca?'Ficaremos muito felizes em compartilhar esse momento especial com você!':'Você fará parte desse momento especial em nossos corações.'}</p>
+ <div style="text-align:left"><p><b>Convidado:</b> ${esc(form.nome)}${d.presenca?` · ${d.pessoas} ${d.pessoas==1?'pessoa':'pessoas'}`:''}<br><b>Data da resposta:</b> ${new Date(d.data).toLocaleString('pt-BR')}<br><b>Situação:</b> ${d.presenca?'Confirmado':'Não comparecerá'}</p>
+ ${d.reservas.length?'<b>Seus presentes:</b><ul class="sum">'+d.reservas.map(r=>`<li>${r.qtd} × ${esc(r.nome)}${r.tamanho?' ('+esc(r.tamanho)+')':''} — reservado</li>`).join('')+'</ul>':''}</div>
+ <p class="hint">Guarde este link para ver, alterar ou cancelar suas escolhas:</p><div class="link">${esc(link)}</div>
+ <div class="row"><button class="btn alt" id="copiar" data-l="${esc(link)}">Copiar link</button><button class="btn" id="alterar">Alterar minhas escolhas</button></div>
+ <p style="margin-top:18px"><b>Contamos com a sua presença!</b></p></section>`;
+}
+
+load();setInterval(()=>{if(!busy&&!done&&$('#modal').classList.contains('hidden'))load()},25000);
+</script>
+</body>
+</html>
