@@ -22,7 +22,8 @@ section{margin-bottom:34px}
 .center{text-align:center}
 .hero{padding-top:20px}
 .hero .t1{font-size:2.2rem;margin:0;line-height:1}
-.hero .t2{font-size:5.4rem;margin:-6px 0 0;line-height:1.05} 
+.hero .t2{font-size:5.4rem;margin:-6px 0 0;line-height:1.05}
+.hero p{margin:14px auto;max-width:400px}
 .bear{font-size:3.2rem;display:block;animation:sway 4s ease-in-out infinite}
 @keyframes sway{50%{transform:rotate(6deg) translateY(-4px)}}
 .heart{color:var(--marrom);display:flex;align-items:center;gap:10px;justify-content:center;margin:14px 0}
@@ -149,7 +150,7 @@ function itemCard(i){
  const l=livre(i),q=sel[i.id]||0,out=l<=0&&!q;
  return `<article class="item ${q?'sel':''} ${out?'out':''}"><div class="ico" aria-hidden="true">${ICON[i.categoria]||'🎁'}</div><div>
  <h4>${esc(i.nome)}</h4>${i.tamanho?`<small>${esc(i.tamanho)}</small>`:''}
- <small>Necessário: ${i.necessaria} · Reservado: ${i.reservada-i.minha+ (q?0:i.minha)} · Disponível: ${Math.max(0,l)}</small>
+ <small>Reservado: ${i.reservada-i.minha+ (q?0:i.minha)} · Disponível: ${Math.max(0,l)}</small>
  ${out?'<span class="tag out">Item esgotado — todas as unidades já foram reservadas.</span>':l<=2?'<span class="tag">Últimas unidades</span>':''}
  ${out?'':`<div class="step"><button type="button" data-a="dec" data-id="${i.id}" aria-label="Diminuir ${esc(i.nome)}" ${q<1?'disabled':''}>−</button><output aria-live="polite">${q}</output><button type="button" data-a="inc" data-id="${i.id}" aria-label="Aumentar ${esc(i.nome)}" ${q>=l?'disabled':''}>+</button></div>`}
  </div></article>`;
