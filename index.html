@@ -113,7 +113,7 @@ ul.sum{padding-left:20px}
 <script>
 /* ===== CONFIGURAÇÃO (edite aqui) ===== */
 const CFG={
- api:'COLE_AQUI_A_URL_DO_APPS_SCRIPT',
+ api:'https://script.google.com/macros/s/AKfycbwRJ-g6zHkq4XrHIDvHLmQmMQ9_veceZV1RYUaV4MvDgKYcIQ4x4TyIuSUXgGIZMFgw/exec',
  dia:'12/12/26', semana:'(sábado)', hora:'19:30 H', dataCompleta:'12/12/2026 às 19:30',
  enderecoCurto:'Rua J, 270<br>Vila Esperança,<br>Contagem',
  enderecoCompleto:'Rua J, 270, Vila Esperança, Contagem, MG'
@@ -207,7 +207,7 @@ function confirmar(){
  else if(!presenca)err='Informe se você poderá comparecer.';
  if(err){render();return}
  const lista=presenca==='sim'?'<ul class="sum">'+items.filter(i=>sel[i.id]).map(i=>`<li>${sel[i.id]} × ${esc(i.nome)}${i.tamanho?' ('+esc(i.tamanho)+')':''}</li>`).join('')+'</ul>':'';
- abrir(`<h2 id="mt">${presenca==='sim'?'Confirmar presença?':'Enviar resposta?'}</h2><p>${presenca==='sim'?(total()?'Você selecionou:':'Você não escolheu nenhum presente. Vamos sugerir um item na confirmação.'):'Você avisará que não poderá comparecer.'}</p>${lista}<div class="row"><button class="btn alt" id="cancelar">Voltar</button><button class="btn" id="ok">Confirmar</button></div>`);
+ abrir(`<h2 id="mt">${presenca==='sim'?'Confirmar presença?':'Enviar resposta?'}</h2><p>${presenca==='sim'?(total()?'Você selecionou:':''):'Você avisará que não poderá comparecer.'}</p>${lista}<div class="row"><button class="btn alt" id="cancelar">Voltar</button><button class="btn" id="ok">Confirmar</button></div>`);
 }
 
 async function enviar(){
