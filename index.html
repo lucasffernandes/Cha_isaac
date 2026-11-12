@@ -113,8 +113,8 @@ ul.sum{padding-left:20px}
 <script>
 /* ===== CONFIGURAÇÃO (edite aqui) ===== */
 const CFG={
- api:'https://script.google.com/macros/s/AKfycbyUBdRtlno1NNNZEC0xP24w4_eBgroj_gEuKOWT7nVxJCij2WuJ4-lAZOsqYo4bsfUF/exec',
- dia:'12/12/26', semana:'(sábado)', hora:'19:30 H',
+ api:'COLE_AQUI_A_URL_DO_APPS_SCRIPT',
+ dia:'12/12/26', semana:'(sábado)', hora:'19:30 H', dataCompleta:'12/12/2026 às 19:30',
  enderecoCurto:'Rua J, 270<br>Vila Esperança,<br>Contagem',
  enderecoCompleto:'Rua J, 270, Vila Esperança, Contagem, MG'
 };
@@ -204,10 +204,10 @@ function fechar(){$('#modal').classList.add('hidden')}
 function confirmar(){
  sync();err='';
  if(form.nome.trim().length<3)err='Informe seu nome completo.';
- else if(presenca!=='nao'&&!total())err='Escolha ao menos um item para levar.';
+ else if(!presenca)err='Informe se você poderá comparecer.';
  if(err){render();return}
  const lista=presenca==='sim'?'<ul class="sum">'+items.filter(i=>sel[i.id]).map(i=>`<li>${sel[i.id]} × ${esc(i.nome)}${i.tamanho?' ('+esc(i.tamanho)+')':''}</li>`).join('')+'</ul>':'';
- abrir(`<h2 id="mt">${presenca==='sim'?'Confirmar reserva?':'Enviar resposta?'}</h2><p>${presenca==='sim'?'Você selecionou:':'Você avisará que não poderá comparecer.'}</p>${lista}<div class="row"><button class="btn alt" id="cancelar">Voltar</button><button class="btn" id="ok">Confirmar</button></div>`);
+ abrir(`<h2 id="mt">${presenca==='sim'?'Confirmar presença?':'Enviar resposta?'}</h2><p>${presenca==='sim'?(total()?'Você selecionou:':'Você não escolheu nenhum presente. Vamos sugerir um item na confirmação.'):'Você avisará que não poderá comparecer.'}</p>${lista}<div class="row"><button class="btn alt" id="cancelar">Voltar</button><button class="btn" id="ok">Confirmar</button></div>`);
 }
 
 async function enviar(){
@@ -223,12 +223,16 @@ async function enviar(){
 
 function renderDone(){
  const d=done,link=location.origin+location.pathname+'?t='+token;
+ const disp=d.items.filter(i=>i.necessaria-i.reservada>0);
+ const sug=d.presenca&&!d.reservas.length&&disp.length?disp[Math.floor(Math.random()*disp.length)]:null;
+ const gps='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(CFG.enderecoCompleto);
  $('#home').classList.add('hidden');
  $('#app').innerHTML=`<section class="card center"><span class="bear" aria-hidden="true">🧸</span>
  <h2>${d.presenca?'Presença confirmada!':'Obrigado por nos avisar!'}</h2>
  <p>${d.presenca?'Ficaremos muito felizes em compartilhar esse momento especial com você!':'Você fará parte desse momento especial em nossos corações.'}</p>
- <div style="text-align:left"><p><b>Convidado:</b> ${esc(form.nome)}${d.presenca?` · ${d.pessoas} ${d.pessoas==1?'pessoa':'pessoas'}`:''}<br><b>Data da resposta:</b> ${new Date(d.data).toLocaleString('pt-BR')}<br><b>Situação:</b> ${d.presenca?'Confirmado':'Não comparecerá'}</p>
- ${d.reservas.length?'<b>Seus presentes:</b><ul class="sum">'+d.reservas.map(r=>`<li>${r.qtd} × ${esc(r.nome)}${r.tamanho?' ('+esc(r.tamanho)+')':''} — reservado</li>`).join('')+'</ul>':''}</div>
+ <div style="text-align:left"><p><b>Convidado:</b> ${esc(form.nome)}${d.presenca?` · ${d.pessoas} ${d.pessoas==1?'pessoa':'pessoas'}`:''}<br><b>Data do evento:</b> ${CFG.dataCompleta}<br><b>Situação:</b> ${d.presenca?'Confirmado':'Não comparecerá'}</p>
+ ${sug?`<p><b>Sugestão de presente:</b> ${esc(sug.nome)}${sug.tamanho?' ('+esc(sug.tamanho)+')':''}</p>`:''}${d.reservas.length?'<b>Seus presentes:</b><ul class="sum">'+d.reservas.map(r=>`<li>${r.qtd} × ${esc(r.nome)}${r.tamanho?' ('+esc(r.tamanho)+')':''}</li>`).join('')+'</ul>':''}</div>
+ ${d.presenca?`<div style="background:var(--creme);border-radius:16px;padding:14px;margin:14px 0">📍 <b>Local do evento</b><br>${esc(CFG.enderecoCompleto)}<br><a class="btn alt" style="margin-top:10px;min-height:44px" target="_blank" rel="noopener" href="${gps}">Como chegar (abrir no GPS)</a></div>`:''}
  <p class="hint">Guarde este link para ver, alterar ou cancelar suas escolhas:</p><div class="link">${esc(link)}</div>
  <div class="row"><button class="btn alt" id="copiar" data-l="${esc(link)}">Copiar link</button><button class="btn" id="alterar">Alterar minhas escolhas</button></div>
  <p style="margin-top:18px"><b>Contamos com a sua presença!</b></p></section>`;
