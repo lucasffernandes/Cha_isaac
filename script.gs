@@ -88,7 +88,6 @@ function save_(d) {
 
   const want = {};
   if (sim) (d.itens || []).forEach(x => { const q = parseInt(x.qtd); if (q > 0) want[String(x.id)] = (want[String(x.id)] || 0) + q; });
-  if (sim && !Object.keys(want).length) return { ok: false, erro: 'Para confirmar presença, escolha ao menos um item para levar.' };
 
   const st = state_(token);
   for (const id in want) {
